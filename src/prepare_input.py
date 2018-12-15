@@ -16,4 +16,4 @@ def write_tsp(cities, filename, name='traveling-santa-2018-prime-paths'):
             f.write('%d %.11f %.11f\n' % (row.Index+1, row.X, row.Y))
         f.write('EOF\n')
 
-write_tsp(cities1k, 'cities1k.tsp')
+write_tsp(cities1k, '../input/cities1k.tsp')

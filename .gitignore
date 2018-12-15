@@ -1,3 +1,5 @@
 input/
 notebook/
-note/
+output/
+*.swp
+*.exe

@@ -25,8 +25,8 @@ def write_submission(tour, filename):
     pd.DataFrame({'Path': list(tour) + [0]}).to_csv(filename, index=False)
 
 
-tour = read_tour('linkern.tour')
-write_submission(tour, 'submission.csv')
+tour = read_tour('../output/linkern.tour')
+write_submission(tour, '../output/submission.csv')
 print(score_tour(tour))
 
 
