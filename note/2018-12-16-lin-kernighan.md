@@ -146,6 +146,37 @@ int CCutil_dat_setnorm (CCdatagroup *dat, int norm)
     }
 ```
 
+而这个参数在 `lk_main` 最开始的时候是通过 N 来传入的。
+
+```
+		case 'N':
+            inorm = atoi(boptarg);
+            switch (inorm) {
+            case 0: norm = CC_MAXNORM; break;
+            case 1: norm = CC_MANNORM; break;
+            case 2: norm = CC_EUCLIDEAN; break;
+            case 3: norm = CC_EUCLIDEAN_3D; break;
+            case 4: norm = CC_USER; break;
+            case 5: norm = CC_ATT; break;
+            case 6: norm = CC_GEOGRAPHIC; break;
+            case 7: norm = CC_MATRIXNORM; break;
+            case 8: norm = CC_DSJRANDNORM; break;
+            case 9: norm = CC_CRYSTAL; break;
+            case 10: norm = CC_SPARSE; break;
+            case 11: norm = CC_RHMAP1; break;
+            case 12: norm = CC_RHMAP2; break;
+            case 13: norm = CC_RHMAP3; break;
+            case 14: norm = CC_RHMAP4; break;
+            case 15: norm = CC_RHMAP5; break;
+            case 16: norm = CC_EUCTOROIDAL; break;
+            case 17: norm = CC_GEOM; break;
+            case 18: norm = CC_EUCLIDEAN_CEIL; break;
+            default:
+                usage (av[0]);
+                return 1;
+            }
+```
+
 
 
 很好，现在的事情就变成了：如何在 `edgelen.c` 里实现一个新的 norm 函数？
