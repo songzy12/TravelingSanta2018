@@ -3,3 +3,5 @@ notebook/
 output/
 *.swp
 *.exe
+*.o
+*.a
