@@ -5,3 +5,7 @@ output/
 *.exe
 *.o
 *.a
+Makefile
+*log
+*.tsp
+note/
