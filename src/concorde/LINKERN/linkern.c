@@ -914,7 +914,7 @@ static double improve_tour (graph *G, distobj *D, adddel *E, aqueue *Q,
 
     if (Gstar) {
         MARK (t1, Q, F, D, G, intptr_world);
-        MARK(t2, Q, F, D, G, intptr_world);
+        MARK (t2, Q, F, D, G, intptr_world);
     }
     return (double) Gstar;
 }
@@ -1196,7 +1196,7 @@ static int kick_step_noback (graph *G, distobj *D, adddel *E, aqueue *Q,
                                               this != lastnext) {
             prev = CClinkern_flipper_prev (F, this);
             if (!is_it_added (this, prev, E)) {
-                val = goodlist[last][i].weight - Edgelen (this, prev, D, F);
+                val = Edgelen (last, this, D, F) - Edgelen (this, prev, D, F);
                 if (val < winner.diff) {
                     winner.diff = val;
                     winner.other = this;
@@ -1467,7 +1467,7 @@ static edgelook *look_ahead (graph *G, distobj *D, adddel *E, CClk_flipper *F,
                                               this != lastnext) {
             prev = CClinkern_flipper_prev (F, this);
             if (!is_it_added (this, prev, E)) {
-                val = goodlist[last][i].weight - Edgelen (this, prev, D, F);
+                val = Edgelen(last, this, D, F) - Edgelen (this, prev, D, F);
                 if (val < value[0]) {
                     for (k = 0; value[k+1] > val; k++) {
                         value[k] = value[k+1];
@@ -1552,7 +1552,7 @@ static void look_ahead_noback (graph *G, distobj *D, adddel *E, CClk_flipper *F,
                                               this != lastnext) {
             prev = CClinkern_flipper_prev (F, this);
             if (!is_it_added (this, prev, E)) {
-                val = goodlist[last][i].weight - Edgelen (this, prev, D, F);
+                val = Edgelen(last, this, D, F) - Edgelen (this, prev, D, F);
                 if (val < winner->diff) {
                     winner->diff = val;
                     winner->other = this;
@@ -1591,7 +1591,7 @@ static void look_ahead_noback (graph *G, distobj *D, adddel *E, CClk_flipper *F,
                                                    this != firstprev) {
                 next = CClinkern_flipper_next (F, this);
                 if (!is_it_added (this, next, E)) {
-                    val = goodlist[first][i].weight - Edgelen (this, next, D, F);
+                    val = Edgelen(first, this, D, F) - Edgelen (this, next, D, F);
                     if (val < winner->diff) {
                         winner->diff = val;
                         winner->other = this;
@@ -1632,7 +1632,7 @@ static edgelook *weird_look_ahead (graph *G, distobj *D, CClk_flipper *F,
         this = goodlist[t2][i].other;
         if (this != t1) {
             next = CClinkern_flipper_next (F, this);
-            val = goodlist[t2][i].weight - Edgelen (this, next, D, F);
+            val =  Edgelen(t2, this, D, F) - Edgelen (this, next, D, F);
             if (val < value[0]) {
                 for (k = 0; value[k+1] > val; k++) {
                     value[k] = value[k+1];
@@ -1685,7 +1685,7 @@ static edgelook *weird_look_ahead2 (graph *G, distobj *D, CClk_flipper *F,
         if (weirdmark[t5] != weirdmagic) {
             if (CClinkern_flipper_sequence (F, t2, t5, t3)) {
                 t6 = CClinkern_flipper_prev (F, t5);
-                val = goodlist[t4][i].weight - Edgelen (t5, t6, D, F);
+                val =  Edgelen(t4, t5, D, F) - Edgelen (t5, t6, D, F);
                 if (val < value[0]) {
                     for (k = 0; value[k+1] > val; k++) {
                         value[k] = value[k+1];
@@ -1701,7 +1701,7 @@ static edgelook *weird_look_ahead2 (graph *G, distobj *D, CClk_flipper *F,
                     side[k] = 0;
                 }
                 t6 = CClinkern_flipper_next (F, t5);
-                val = goodlist[t4][i].weight - Edgelen (t5, t6, D, F);
+                val =  Edgelen(t4, t5, D, F) - Edgelen (t5, t6, D, F);
                 if (val < value[0]) {
                     for (k = 0; value[k+1] > val; k++) {
                         value[k] = value[k+1];
@@ -1718,7 +1718,7 @@ static edgelook *weird_look_ahead2 (graph *G, distobj *D, CClk_flipper *F,
                 }
             } else {
                 t6 = CClinkern_flipper_prev (F, t5);
-                val = goodlist[t4][i].weight - Edgelen (t5, t6, D, F);
+                val =  Edgelen(t4, t5, D, F) - Edgelen (t5, t6, D, F);
                 if (val < value[0]) {
                     for (k = 0; value[k+1] > val; k++) {
                         value[k] = value[k+1];
@@ -1779,7 +1779,7 @@ static edgelook *weird_look_ahead3 (graph *G, distobj *D, CClk_flipper *F,
         if (weirdmark[t7] != weirdmagic &&
                    CClinkern_flipper_sequence (F, t2, t7, t3)) {
             t8 = CClinkern_flipper_prev (F, t7);
-            val = goodlist[t6][i].weight - Edgelen (t7, t8, D, F);
+            val =  Edgelen(t6, t7, D, F) - Edgelen (t7, t8, D, F);
             if (val < value[0]) {
                 for (k = 0; value[k+1] > val; k++) {
                     value[k] = value[k+1];
@@ -1793,7 +1793,7 @@ static edgelook *weird_look_ahead3 (graph *G, distobj *D, CClk_flipper *F,
                 side[k] = 0;
             }
             t8 = CClinkern_flipper_next (F, t7);
-            val = goodlist[t6][i].weight - Edgelen (t7, t8, D, F);
+            val =  Edgelen(t6, t7, D, F) - Edgelen (t7, t8, D, F);
             if (val < value[0]) {
                 for (k = 0; value[k+1] > val; k++) {
                     value[k] = value[k+1];
@@ -1953,12 +1953,12 @@ static void first_kicker (graph *G, distobj *D, CClk_flipper *F, int *t1,
     prevl = Edgelen (try1, prev, D, F);
     if (nextl >= prevl) {
         *t1 = try1;
-        *t2 = next;
-        best = nextl - goodlist[*t1][0].weight;
+        *t2 = next;        
+        best = nextl - Edgelen(*t1, goodlist[*t1][0].other, D, F);
     } else {
         *t1 = prev;
         *t2 = try1;
-        best = prevl - goodlist[*t1][0].weight;
+        best = prevl - Edgelen(*t1, goodlist[*t1][0].other, D, F);
     }
 
     for (i = 0; i < longcount; i++) {
@@ -1968,13 +1968,13 @@ static void first_kicker (graph *G, distobj *D, CClk_flipper *F, int *t1,
         nextl = Edgelen (try1, next, D, F);
         prevl = Edgelen (try1, prev, D, F);
         if (nextl >= prevl) {
-            len = nextl - goodlist[try1][0].weight;
+            len = nextl - Edgelen(try1, goodlist[try1][0].other, D, F);
             if (len > best) {
                 *t1 = try1;
                 *t2 = next;
             }
         } else {
-            len = prevl - goodlist[try1][0].weight;
+            len = prevl - Edgelen(try1, goodlist[try1][0].other, D, F);
             if (len > best) {
                 *t1 = prev;
                 *t2 = try1;

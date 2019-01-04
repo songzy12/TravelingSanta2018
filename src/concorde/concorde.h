@@ -2166,10 +2166,9 @@ typedef struct CClk_flipper {
 
 int
     CClinkern_flipper_init (CClk_flipper *f, int ncount, int *cyc),
+    CClinkern_flipper_next (CClk_flipper *f, int x),
+    CClinkern_flipper_prev (CClk_flipper *f, int x),
     CClinkern_flipper_sequence (CClk_flipper *f, int x, int y, int z);
-CClk_childnode    
-    *CClinkern_flipper_next (CClk_flipper *f, CClk_childnode *x),
-    *CClinkern_flipper_prev (CClk_flipper *f, CClk_childnode *x);
 void
     CClinkern_flipper_flip (CClk_flipper *F, int x, int y),
     CClinkern_flipper_cycle (CClk_flipper *F, int *x),
