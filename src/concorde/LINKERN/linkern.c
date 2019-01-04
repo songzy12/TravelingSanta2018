@@ -943,7 +943,7 @@ static int step (graph *G, distobj *D, adddel *E, aqueue *Q, CClk_flipper *F,
             newfirst = e->over;
 
             gain = oldG - e->diff;
-            val = gain - Edgelen (newfirst, last, D);
+            val = gain - Edgelen (newfirst, last, D, F);
             if (val > *Gstar) {
                 *Gstar = val;
                 hit++;
@@ -1043,7 +1043,7 @@ static int step_noback (graph *G, distobj *D, adddel *E, aqueue *Q,
             int val;
 
             gain -= e.diff;
-            val = gain - Edgelen (newlast, first, D);
+            val = gain - Edgelen (newlast, first, D, F);
 
             if (val > *Gstar) {
                 *Gstar = val;
@@ -1497,7 +1497,7 @@ static edgelook *look_ahead (graph *G, distobj *D, adddel *E, CClk_flipper *F,
                                                    this != firstprev) {
                 next = CClinkern_flipper_next (F, this);
                 if (!is_it_added (this, next, E)) {
-                    val = goodlist[first][i].weight - Edgelen (this, next, D);
+                    val = goodlist[first][i].weight - Edgelen (this, next, D, F);
                     if (val < value[0]) {
                         for (k = 0; value[k+1] > val; k++) {
                             value[k] = value[k+1];
@@ -1568,7 +1568,7 @@ static void look_ahead_noback (graph *G, distobj *D, adddel *E, CClk_flipper *F,
                 next =  CClinkern_flipper_next (F, this);
                 if (!is_it_added (this, next, E) &&
                     !is_it_deleted (prev, next, E)) {
-                    val += (Edgelen (next, prev, D) - Edgelen (this, next, D));
+                    val += (Edgelen (next, prev, D, F) - Edgelen (this, next, D, F));
                     if (val < winner->diff) {
                         winner->diff = val;
                         winner->other = this;
@@ -2563,7 +2563,7 @@ static void add_to_active_queue (int n, aqueue *Q, distobj *D, graph *G,
     if (Q->active[n] == 0) { 
         int next = CClinkern_flipper_next (F, n);
         Q->active[n] = 1;
-        Q->h->key[n] = G->goodlist[n][0].weight - Edgelen (n, next, D);
+        Q->h->key[n] = G->goodlist[n][0].weight - Edgelen (n, next, D, F);
         CCutil_dheap_insert (Q->h, n);
     }
 }
