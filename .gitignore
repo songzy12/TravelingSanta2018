@@ -10,3 +10,4 @@ Makefile
 *.tsp
 note/
 config.status
+linkern.tour
