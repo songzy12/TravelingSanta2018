@@ -674,10 +674,10 @@ static int repeated_lin_kernighan (graph *G, distobj *D, int *cyc,
             newtree = 1;
         }
     }
-
+    printf("start lin_kernighan\n");
     lin_kernighan (G, D, &E, &Q, &F, &best, win_cycle, &winstack, &fstack,
                    intptr_world, edgelook_world);
-
+    printf("finish lin_kernighan\n");
     winstack.counter = 0;
     win_cycle[0] = -1;
 
@@ -848,12 +848,18 @@ static void lin_kernighan (graph *G, distobj *D, adddel *E, aqueue *Q,
     int start, i;
     double delta, totalwin = 0.0;
 
+    int cnt = 0;
+    printf("start pop_from_active_queue, cnt: %d\n", cnt);
     while (1) {
+        cnt += 1;
+        if (cnt % 10000 == 0)
+            printf("cnt: %d\n", cnt);
         start = pop_from_active_queue (Q, intptr_world);
         if (start == -1) break;
         
         delta = improve_tour (G, D, E, Q, F, start, fstack, intptr_world,
                               edgelook_world);
+        // printf("start: %d, delta: %f\n", start, delta);
         if (delta > 0.0) {
             totalwin += delta;
             if (win->counter < win->max) {
@@ -877,6 +883,7 @@ static void lin_kernighan (graph *G, distobj *D, adddel *E, aqueue *Q,
             fstack->counter = 0;
         }
     }
+    printf("finish pop_from_active_queue, cnt: %d\n", cnt);
 
     if (win_cycle[0] == -1) {
         for (i = 0; i < fstack->counter; i++) {
@@ -2713,6 +2720,7 @@ static int is_prime(int p) {
             
             hashset_add(set, temp);
         }
+        printf("prime list read finished.\n");
     }
             
     int result = hashset_is_member(set, p);
@@ -2724,9 +2732,9 @@ static int is_prime(int p) {
 
 static int dist_prime_flipper (int _i, int _j, distobj *D, CClk_flipper *F)   /* As in Bentley's kdtree paper */
 {
-    // int i = F->children[_i].name; // emmm i == _i?    
-    // int j = F->children[_j].name;
-    // printf("%d %d %d %d\n", _i, i, _j, j);
+    int i = F->children[_i].name; // emmm i == _i?    
+    int j = F->children[_j].name;
+    assert(_i == i && _j == j);
 
     int id = F->children[_i].id;
     return  dist_prime_index (_i, _j, D, id);
@@ -2736,8 +2744,9 @@ static int dist_prime_flipper (int _i, int _j, distobj *D, CClk_flipper *F)   /*
 static int dist_prime_index (int _i, int _j, distobj *D, int id)
 {
     int temp = dist (_i, _j, D);   
-    // if ((id + 1) % 10 == 0 && !is_prime(_i))
-    //     temp = (int)(temp * 1.1);
+    if ((id + 1) % 10 == 0 && !is_prime(_i)) {
+        temp = (int)(temp * 1.1);
+    }
 
     return temp;
 }
