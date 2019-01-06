@@ -3,8 +3,6 @@ output/
 *log
 linkern.tour
 
-note/
-notebook/
 *.swp
 
 config.status
