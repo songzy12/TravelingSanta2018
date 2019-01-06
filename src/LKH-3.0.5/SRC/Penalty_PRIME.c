@@ -219,10 +219,13 @@ GainType Penalty_PRIME()
 
             P += temp;
             if (P > CurrentPenalty ||
-                (P == CurrentPenalty && CurrentGain <= 0))
+                (P == CurrentPenalty && CurrentGain <= 0)) {
+                printf("P: %d, CurrentPenalty: %d\n", P, CurrentPenalty);
                 return CurrentPenalty + (CurrentGain > 0);
+            }
         }
         N = Forward ? SUCC(N) : PREDD(N);
     } while (N != Depot);
+    printf("P: %d, CurrentPenalty: %d\n", P, CurrentPenalty);
     return P;
 }
