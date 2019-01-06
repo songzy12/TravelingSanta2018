@@ -46,7 +46,7 @@ _OBJ = Activate.o AddCandidate.o AddExtraCandidates.o                  \
 	   Penalty_PDPTW.o Penalty_PDTSP.o Penalty_PDTSPF.o                \
 	   Penalty_PDTSPL.o Penalty_RCTVRP.o                               \
 	   Penalty_SOP.o Penalty_TRP.o Penalty_TSPDL.o Penalty_TSPPD.o     \
-	   Penalty_TSPTW.o Penalty_VRPB.o Penalty_VRPBTW.o Penalty_VRPPD.o \
+	   Penalty_TSPTW.o Penalty_VRPB.o Penalty_VRPBTW.o Penalty_VRPPD.o Penalty_PRIME.o \
        PDPTW_Reduce.o printff.o PrintParameters.o                      \
        Random.o ReadCandidates.o ReadEdges.o ReadLine.o                \
        ReadParameters.o ReadPenalties.o ReadProblem.o RecordBestTour.o \
