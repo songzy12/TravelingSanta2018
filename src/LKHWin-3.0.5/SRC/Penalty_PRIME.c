@@ -217,15 +217,15 @@ GainType Penalty_PRIME()
             if (N->Rank % 10 == 0 && !is_prime(N->Id))
                 temp *= 1.1;
 
-            P += temp;
+            P += (int) temp;
             if (P > CurrentPenalty ||
                 (P == CurrentPenalty && CurrentGain <= 0)) {
-                printf("P: %f, CurrentPenalty: %f\n", P, CurrentPenalty);
+                printf("P: %I64d, CurrentPenalty: %I64d\n", P, CurrentPenalty);
                 return CurrentPenalty + (CurrentGain > 0);
             }
         }
         N = Forward ? SUCC(N) : PREDD(N);
     } while (N != Depot);
-    printf("P: %f, CurrentPenalty: %f\n", P, CurrentPenalty);
+    printf("P: %I64d, CurrentPenalty: %I64d\n", P, CurrentPenalty);
     return P;
 }
