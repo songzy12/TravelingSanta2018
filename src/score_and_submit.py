@@ -40,6 +40,6 @@ write_submission(tour, '../output/submission.csv')
 print(score_tour(tour))
 
 
-plt.figure(figsize=(20, 20))
-plt.plot(cities.X[tour], cities.Y[tour], alpha=0.7)
-plt.show()
+#plt.figure(figsize=(20, 20))
+#plt.plot(cities.X[tour], cities.Y[tour], alpha=0.7)
+#plt.show()
