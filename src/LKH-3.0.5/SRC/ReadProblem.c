@@ -615,6 +615,8 @@ void ReadProblem()
         Penalty = Penalty_VRPBTW;
     else if (ProblemType == VRPPD)
         Penalty = Penalty_VRPPD;
+    else if (ProblemType == TSP)
+        Penalty = Penalty_PRIME;
     if (BWTSP_B > 0) {
         if (Penalty)
             eprintf("BWTSP not compatible with problem type %s\n", Type);

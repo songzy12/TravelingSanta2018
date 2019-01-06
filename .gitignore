@@ -7,7 +7,6 @@ note/
 notebook/
 *.swp
 
-Makefile
 config.status
 config.h
 config.cache
@@ -15,5 +14,6 @@ config.cache
 *.a
 linkern
 *.exe
-*.obj
 .vs
+*.obj
+*.pdb

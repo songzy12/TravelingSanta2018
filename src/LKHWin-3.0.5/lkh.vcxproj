@@ -292,6 +292,7 @@
     <ClCompile Include="SRC\Penalty_PDTSP.c" />
     <ClCompile Include="SRC\Penalty_PDTSPF.c" />
     <ClCompile Include="SRC\Penalty_PDTSPL.c" />
+    <ClCompile Include="SRC\Penalty_PRIME.c" />
     <ClCompile Include="SRC\Penalty_RCTVRP.c" />
     <ClCompile Include="SRC\Penalty_SCVRPTW.c" />
     <ClCompile Include="SRC\Penalty_SOP.c" />

@@ -548,6 +548,7 @@ GainType Penalty_TSPTW(void);
 GainType Penalty_VRPB(void);
 GainType Penalty_VRPBTW(void);
 GainType Penalty_VRPPD(void);
+GainType Penalty_PRIME(void);
 void PDPTW_Reduce(void);
 void printff(const char * fmt, ...);
 void PrintParameters(void);
