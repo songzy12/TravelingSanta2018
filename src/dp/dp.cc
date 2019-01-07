@@ -348,6 +348,7 @@ class DPSolver {
       for (int i : perm) fprintf(stderr, " %d", i);
       fprintf(stderr, "\n");
     }
+    tour->ToCSV();
   }
 };
 
