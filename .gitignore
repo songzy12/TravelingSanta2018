@@ -1,3 +1,8 @@
+note/
+
+concorde/
+
+*.csv
 input/
 output/
 *log
@@ -15,3 +20,4 @@ linkern
 .vs
 *.obj
 *.pdb
+x64/
