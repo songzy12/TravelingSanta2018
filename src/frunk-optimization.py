@@ -1,5 +1,4 @@
-
-# coding: utf-8
+#!/usr/bin/python3.6
 
 # I'm going to share fully automated K-Optimization :D
 
@@ -67,7 +66,8 @@ frunktion_name, frunktion_body = frunkopt_func_generator(K)
 # In[ ]:
 
 
-get_ipython().run_cell_magic('time', '', "exec(compile(ast.parse(frunktion_body), '<string>', mode='exec'))")
+#get_ipython().run_cell_magic('time', '', "exec(compile(ast.parse(frunktion_body), '<string>', mode='exec'))")
+exec(compile(ast.parse(frunktion_body), '<string>', mode='exec'))
 
 
 # It's Alive!!!
